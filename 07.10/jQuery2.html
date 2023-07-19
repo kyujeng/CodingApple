@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery 연습장</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
+        .main-bg {
+            padding: 100px 20px;
+            background: lightgray;
+        }
+
+        .black-bg {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+            padding: 30px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        .white-bg {
+            background: white;
+            border-radius: 5px;
+            padding: 30px;
+        }
+
+        .show-modal {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="black-bg">
+        <div class="white-bg">
+            <h4>로그인하세요</h4>
+            <form action="success.html"> <!-- 입력한 정보를 보낼 수 있다. -->
+                <div class="my-3">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="my-3">
+                    <input type="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary" id="Primary1">전송</button>
+                <button type="button" class="btn btn-danger" id="close">닫기</button>
+            </form>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary">Primary</button>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand">Navbar</span>
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+    <div>
+        <h4>Shirts on Sale</h4>
+        <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+    <!-- 아래는 jQuery를 가져온 링크입니다. -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script>
+        $('#login').on('click', function () {
+            $('.black-bg').addClass('show-modal');
+        });
+        $('#close').on('click', function () {
+            $('.black-bg').removeClass('show-modal');
+        });
+        $('#Primary1').on('click', function(e){
+            if($('.form-control').val() == ''){ // input내용을 받아오는 문법, javaScript는 .value()이다.
+            e.preventDefault(); 
+            // 제대로 입력이 되지 않았는데도 전송 완료 페이지로 넘어가버리는 걸 방지하기 위한 것
+            alert('비어있는 칸이 없이 작성하시길 바랍니다.')
+        }
+        
+
+        });
+
+    </script>
+
+    <!-- 아래는 bootstrap를 가져온 링크입니다. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slide-container {
+            width: 300vw;
+            /* margin-left: -100vw; 을 넣어 class 추가를 해도 된다.*/
+            transition: all 1s;
+            transform: translateX(0vw);
+        }
+
+        .slide-box {
+            width: 100vw;
+            float: left;
+        }
+
+        .slide-box img {
+            width: 100%;
+        }
+    </style>
+    <!-- </head> -->
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!-- jQuery 코드 -->
+
+    <div style="overflow: hidden;">
+        <div class="slide-container">
+            <div class="slide-box" id="car1">
+                <img src="../img/car1.png" alt="car1">
+            </div>
+            <div class="slide-box" id="car2">
+                <img src="../img/car2.png" alt="car2">
+            </div>
+            <div class="slide-box" id="car3">
+                <img src="../img/car3.png" alt="car3">
+            </div>
+        </div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="back">back</button>
+    <button class="next">next</button>
+
+    <script>
+        // 각각 숫자 버튼을 누르면 해당 사진으로 자연스럽게 이동하는 코드
+        $('.slide-1').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(0vw)');
+        });
+        $('.slide-2').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(-100vw)');
+        });
+        $('.slide-3').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(-200vw)');
+        });
+        // document.querySelector('.slide-container').style.transform = 'translateX(-100vw)'; <-- JavaScript로 적은 코드
+
+        // 이전, 다음 버튼을 누르면 해당 사진에서 이전, 다음 사진으로 넘어가는 코드
+        var nowImg = 1;
+        /* $('.back').on('click',function(){
+            if(nowImg == 1){
+                $('.slide-container').css('transform', 'translateX(-200vw)');
+                nowImg = 3;
+            } else if (nowImg == 2){
+                $('.slide-container').css('transform', 'translateX(0vw)');
+                nowImg = 1;
+            } else if(nowImg == 3) {
+                $('.slide-container').css('transform', 'translateX(-100vw)');
+                nowImg = 2;
+            }
+        });
+        $('.next').on('click',function(){
+            if(nowImg == 1){
+                $('.slide-container').css('transform', 'translateX(-100vw)');
+                nowImg = 2;
+            } else if (nowImg == 2){
+                $('.slide-container').css('transform', 'translateX(-200vw)');
+                nowImg = 3;
+            } else if(nowImg == 3) {
+                $('.slide-container').css('transform', 'translateX(0vw)');
+                nowImg = 1;
+            }
+        }); */
+
+        // 확장성 있는 코드 짜보기
+        var cnt = -100;
+
+        $('.next').on('click',function(){
+            $('.slide-container').css('transform',"translateX(" + cnt + "vw)");
+            cnt+= -100;
+            if ( cnt == -400 ){
+                cnt = 0;
+            };
+        });
+
+    </script>
+</body>
+
+</html>

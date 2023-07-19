@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
+        ul.list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        ul.list::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .tab-button {
+            display: block;
+            padding: 10px 20px 10px 20px;
+            float: left;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            color: grey;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .orange {
+            border-top: 2px solid orange;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid white;
+            border-left: 1px solid #ccc;
+            color: black;
+            margin-top: -2px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 10px;
+        }
+
+        #sizeform {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <ul class="list">
+            <li class="tab-button" data-id="0">Products</li>
+            <li class="tab-button" data-id="1">Information</li>
+            <li class="tab-button" data-id="2">Shipping</li>
+        </ul>
+        <div class="tab-content">
+            <p>상품설명입니다. Product</p>
+        </div>
+        <div class="tab-content">
+            <p>스펙설명입니다. Information</p>
+        </div>
+        <div class="tab-content">
+            <p>배송정보입니다. Shipping</p>
+        </div>
+    </div>
+
+    <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+            <option>모자</option>
+            <option>셔츠</option>
+            <option>바지</option>
+        </select>
+    </form>
+    <form class="container my-5 form-group" id="sizeform">
+        <p>사이즈</p>
+        <select class="form-select mt-2" id="SizeOption">
+            <option>90</option>
+            <option>95</option>
+            <option>100</option>
+            <option>105</option>
+        </select>
+    </form>
+
+    <!-- 아래는 jQuery를 가져오는 스크립트 링크입니다. -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        // dataset을 이용한 탭기능 코드
+        $('.list').click(function (e) {
+            tap(e.target.dataset.id);
+            console.log(e.target);
+        })
+
+        function tap(a) {
+            $('.tab-button').removeClass('orange');
+            $('.tab-button').eq(a).addClass('orange');
+            $('.tab-content').removeClass('show');
+            $('.tab-content').eq(a).addClass('show');
+        };
+
+        var pants = [28, 30, 32, 34];
+        var shirt = [90, 95, 100, 105];
+
+        var jsize = '<option>28</option><option>30</option>';
+        $('.form-select').change(function (e) {
+            if (e.target.value === '바지') {
+                $('#sizeform').show();
+                $('#SizeOption').empty();
+                for (var i = 0; i < pants.length; i++) {
+                    $('#SizeOption').append('<option>' + pants[i] + '</option>');
+                }
+            } else if (e.target.value === '모자') {
+                $('#sizeform').hide();
+            } else if (e.target.value === '셔츠') {
+                $('#sizeform').show();
+                $('#SizeOption').empty();
+                // for문을 사용한 방법
+                /* for (var i = 0; i < shirt.length; i++) {
+                    $('#SizeOption').append('<option>' + shirt[i] + '</option>');
+                } */
+                // for Each를 사용한 방법
+                pants.forEach(function (a) {
+                    $('.form-select').eq(1).append(`<option>${a}</option>`) // '<option>' + a + '</option>' 혹은, `<option>${a}</option>`
+                })
+            }
+        });
+        // object를 반복문 사용한 방법
+        var obj = { name: 'kim', age: 20 }
+        for (var key in obj) {
+            console.log(key);
+            console.log(obj[key]);
+        }
+
+        /*
+        var pants = [28, 30, 32];
+        pants.forEach(function(a){
+            console.log(a)
+        });
+        pants.forEach((a) => {
+            console.log(a)
+        });
+
+            function 키워드 대신 => 화살표를 ( ) 우측에 부착해도 똑같이 함수만들 수 있습니다.
+            저걸 arrow function 이라고 합니다.
+            arrow function의 기능차이는 하나가 있는데
+            함수 안에서 this를 써야할 경우 
+            - 그냥 함수는 함수 안에서 this를 알맞게 재정의해줍니다.
+            - arrow function은 함수 안에서 this를 재정의해주지 않고 바깥에 있던 this를 그대로 씁니다.
+            그래서 이벤트리스너 콜백함수안에서 this를 써야하면 arrow function 쓰면 의도와 다르게 동작할 수도 있습니다.
+        */
+
+    </script>
+
+    <!-- 아래는 bootstrap를 가져오는 스크립트 링크입니다. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

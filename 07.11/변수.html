@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수 키워드</title>
+</head>
+<body>
+    <script>
+        const 출신지역 = '서울'; // 변수 선언
+        var 나이 = 20; // 변수에 값을 할당
+        나이 = 22; // 할당을 나중에 해도 된다.
+        // 값을 할당하지 않은 변수를 그냥 출력하면 자동으로 undefined(= 값이 없다)이 들어간다.
+
+        /*
+            함수안에서 변수를 만들면 사용가능 범위는 함수 내부로 제한한다.
+            var는 함수 바깥에서 변수를 만들면 함수 안에서도 사용 가능하다.
+            function() 밖으로 나갈 수 읍다.
+            let : 재선언이 불가능하다.
+            let 이름 = 'kim';
+            let 이름 = 'park'; -> 재선언이 불가능하다. => 변수 까먹고 또 만드는 것을 방지할 수 있다.
+            if(){} 처럼 {} 안이 범위다.
+            const : let과 똑같이 재선언 불가능하다. 재할당도 불가능하다.
+            const 이름 = 'kim';
+            이름 = 'park'; -> 불가능하다!
+            if(){} 처럼 {} 안이 범위다.
+        */
+    </script>
+</body>
+</html>

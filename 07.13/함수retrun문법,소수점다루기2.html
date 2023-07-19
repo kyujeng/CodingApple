@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할인가를 return하는 함수</title>
+</head>
+<body>
+
+    <script>
+
+        console.log(구입함수(70,false));
+        console.log(구입함수(10,true));
+        console.log(구입함수(10.3,true));
+
+        function 구입함수(a,boolean){
+            if(boolean == true){
+                a = a - (a * 0.1);
+                var answer = (a - 1.5).toFixed(2);
+                return answer;
+            } else if (boolean == false){
+                var answer2 = ( a = a - (a * 0.1)).toFixed(2);
+                return answer2;
+            }
+        } 
+
+    </script>
+
+</body>
+</html>

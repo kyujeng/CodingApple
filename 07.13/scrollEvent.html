@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 이벤트로 만드는 재밌는 기능들</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .navbar {
+            position: fixed;
+            margin-top: 3px;
+            width: 100%;
+            z-index: 5;
+        }
+
+        .navbar-brand {
+            font-size: 30px;
+            transition: all 0.5s;
+        }
+
+        .small {
+            font-size: 20px;
+        }
+
+        .clause {
+            width: 200px;
+            height: 200px;
+            overflow-y: scroll;
+            position: relative;
+            top: 170px;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 3px;
+            background: #ffffff;
+        }
+
+        .progress-container .progress-bar {
+            width: 0;
+            height: 3px;
+            background: #000000;
+        }
+
+        .content_obj {
+            width: 100%;
+            height: 2000px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand">JSShop</span>
+            <span class="ms-auto mx-3 badge bg-dark">Dark 🔄</span>
+            <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="clause">
+        <!-- overflow-y: scroll;-> 내용이 해당 div 크기를 넘을 경우 스크롤바 생성 -->
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Quae voluptas voluptatum minus praesentium fugit debitis at,
+        laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis,
+        eligendi quae consectetur praesentium exercitationem.
+    </div>
+
+    <div style="height: 2000px;"></div>
+    <div class="header">
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="content_obj"></div>
+
+    <script>
+        window.onscroll = function () {
+            progressBar()
+        };
+
+        function progressBar() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementsByClassName("progress-bar")[0].style.width = scrolled + "%";
+        }
+    </script>
+    <script>
+        // scroll event
+        /* window.addEventListener('scroll', function(){ // window는 현재 페이지를 의미 == document 와 비슷하지만 window가 더 큰 개념    
+        }); */
+        $(window).on('scroll', function () {
+            if (window.scrollY >= 100) {
+                $('.navbar-brand').addClass('small')
+            } else if (window.scrollY < 100) {
+                $('.navbar-brand').removeClass('small')
+            }
+        })
+        $('.clause').on('scroll', function () {
+            var a = $('.clause');
+            if (a[0].scrollHeight - a.scrollTop() == a.outerHeight()) {
+                alert('다 읽었습니다.');
+            }
+        })
+        $(function () {
+            $("body").prognroll({
+                height: 5,
+                color: "#000000"
+            });
+            $(".content").prognroll({
+                custom: true
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
+
+<!--  
+    window.scrollTo -> 페이지를 살짝 내리면(scroll) 강제로 지정한 값까지 내려간다. window.scrollto(x값, y값)
+    아마, scrollTo를 사용하면 강제로 지정한 값으로 이동할 때, 자연스럽게 이동할텐데 그 이유는 bootstrap을 사용해서 그렇다.
+    window.scrollBy -> To와 비슷하다. window.scrollBy(시작점,끝점) = 시작점에서 끝점까지 이동해주세요.
+    window.scrollY -> 페이지에서 얼마나 스크롤 했는지 보여줌. window.scrollY
+    window.scrollX -> 페이지에서 X값을 얼만큼 옮겼는지 보여줌. window.scrollX
+-->

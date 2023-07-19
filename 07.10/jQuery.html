@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery 연습장</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
+        .list-group {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .black-bg {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+            padding: 30px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 1s;
+        }
+
+        .white-bg {
+            background: white;
+            border-radius: 5px;
+            padding: 30px;
+        }
+
+        .show-modal {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="black-bg">
+        <div class="white-bg">
+            <h4>로그인하세요</h4>
+            <button class="btn btn-danger" id="close">닫기</button>
+        </div>
+    </div>
+    <button class="login" id="login">login</button>
+    <!--
+    <button type="button" class="btn btn-primary">Primary</button>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand">Navbar</span>
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+    <p class="hello">안녕</p>
+    -->
+    <!-- 아래는 jQuery를 가져온 링크입니다. -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script>
+        $('#login').on('click', function () {
+            $('.black-bg').addClass('show-modal');
+        });
+        /*
+        $('#close').on('click', function () { // jQuery는 class명이 한 칸 띄어쓰기가 되어있으면 서로 다른 class명이라 생각한다.
+            $('.black-bg').css('display', 'none');
+            // $('.black-bg').fadeOut();
+
+        });
+        $('.login').on('click', function () {
+            $('.black-bg').css('display', 'block');
+            // $('.black-bg').fadeIn(); // 하지만 애니메이션이 Script란에 많아지면 성능이 저하된다(느려진다) 애니메이션은 css로 구현하는게 좋다.
+        });
+        */
+        /*
+            document.querySelector('.list-group-item')      list-group-item 맨 위에 An item만 찾아준다.
+            document.querySelectorAll('.list-group-item')   list-group-item이란 class를 가진 요소를 다 찾아준다.
+        
+        그 중에 A second item만 변경해주고 싶다면  document.querySelectorAll('.list-group-item')[1] 이라고 하면 된다.
+        
+       
+            document.querySelector('.navbar-toggler').addEventListener('click', function () {
+                document.querySelector('.list-group').classList.toggle('show'); // toggle은 'show'를 뗐다 붙였다 할 수 있게 해준다.
+        });
+        
+        $('.navbar-toggler').on('click', function() { // = document.querySelector('.navbar-toggler').addEventListener('click', function ()
+             $('.list-group').add('show');
+             $('.list-group').slideDown(); // 천천히 list가 내려감
+             // slideup()은 천천히 list가 올라감 등등 여러 기능이 있다.
+             
+            
+        }); // jQuery로 class를 붙였다 뗐다 할 수 있는 코드.
+
+        
+            $('.hello').addClass('클래스명'); -> class를 추가하고 싶을때
+            $('.hello').removeClass('클래스명'); -> class를 제거하고 싶을때
+            $('.hello').toggleClass('클래스명'); -> class를 추가했다 제거했다 왔다갔다 하고 싶을때
+        
+        
+        //document.querySelector('.hello').innerHTML = '안녕하세요' // JavaScript로 적은 안녕 -> 안녕하세요
+        //$('.hello').html('안녕하세요'); // jQuery로 적은 안녕 -> 안녕하세요
+        
+        //document.querySelector('.hello').style.color = 'red'; -> JavaScript로 적은 글자를 red 색상으로 변경
+        //$('.hello').css('color', 'red'); -> jQuery로 적은 글자를 red 색상으로 변경
+        */
+    </script>
+
+    <!-- 아래는 bootstrap를 가져온 링크입니다. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

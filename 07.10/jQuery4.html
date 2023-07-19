@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery 연습장 - 369게임 응용편</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"></label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">숫자를 입력하세요.</div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btn-primary">확인</button>
+    </form>
+
+    <!-- 아래는 jQuery를 가져온 링크입니다. -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script> $('#btn-primary').on('click', function () {
+            let str = String($('.form-control').val());
+            const checkNum = Number(str[str.length - 1]);
+            if (checkNum == 3 || checkNum == 6 || checkNum == 9) {
+                alert('박수');
+            }
+            else {
+                alert('통과');
+            }
+        })
+
+    </script>
+
+    <!-- 아래는 bootstrap를 가져온 링크입니다. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

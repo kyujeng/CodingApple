@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #button1 {
+            background-color: white;
+            color: black;
+            width: 50px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 아래는 jQuery를 가져온 링크입니다. -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<nav>
+
+    <button class="badge bg-dark" id="dark" type="button"> Dark🔄 </button>
+    <div id="button1">화면</div>
+</nav>
+<script>
+    
+    var Count = 1;
+    $('#dark').on('click', function(){
+        Count++;
+        if( Count % 2 == 0 ){
+            $('#button1').css('background-color', "black");
+            $('#button1').css('color', "white");
+        }else if(Count % 2 == 1){
+            $('#button1').css('background-color', "white");
+            $('#button1').css('color', "black");
+        }
+    });
+</script>
+</body>
+</html>
